@@ -1,0 +1,6 @@
+# FMI_Network_Programming_Server-Client_Quicksort
+This is a simple project for a course in university called Network Programming
+# What does it do?
+Well... If you haven't guessed by the name we have a server and we can have many clients. When the server is started it will start listening for connections from clients. Every client will receive a message upon a succesfull connection and will be prompted by the server to enter numbers that need to be sorted with another message. The server will check the message from the client and will attempt to extract all numbers with the help of a regular expression. From here we have two options: </br> • If the client's message contains numbers they will be sorted with quciksort (algorithm is implemented in a separate file) and returned to the client in the form of a message from the server and the connection will end.</br> • The client can't read, is hard-headed or just dumb and has not sent any numbers so the server will sent a message asking for numbers until the client sends them or simply gives up by saying bye. </br> 
+# How to run it
+To run the project first type python server.py in the terminal and then in a separate terminal (or terminals, depends how many clients you want to have at the same time) type python client.py. I suppose you have read the previous paragraph by now and know what follows :)

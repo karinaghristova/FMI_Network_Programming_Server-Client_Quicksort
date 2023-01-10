@@ -1,4 +1,5 @@
 import random
+from multiprocessing import Process
 
 def swap (arr, firstIndex, secondIndex):
     """
@@ -41,8 +42,27 @@ def quicksort(arr, lowIndex, highIndex):
     quicksort(arr, lowIndex, lp - 1)  #sorting the left side
     quicksort(arr, lp + 1, highIndex) #sorting the right side
 
+def quicksort_parallel(arr, lowIndex, highIndex):
+    """
+    Performing parallel quicksort for the given array
+    """
+    if lowIndex >= highIndex:
+        return
+    pivotIndex = random.randint(lowIndex, highIndex) #Choosing a random pivot element
+    pivot = float(arr[pivotIndex])
+    swap(arr, pivotIndex, highIndex) #Placing the pivot element at the end
+    lp = partition(arr, lowIndex, highIndex, pivot)
+    p1 = Process(target=quicksort, args=(arr, lowIndex, lp - 1))  #sorting the left side
+    p2 = Process(target=quicksort, args=(arr, lp + 1, highIndex)) #sorting the right side
 
-# list = [156, 1651, -955, 1, 20, 69, 31]
-# print(list)
-# quicksort(list, 0, len(list)-1)
-# print(list)
+    p1.start()
+    p2.start()
+
+    p1.join()
+    p2.join()
+
+if __name__ == '__main__':
+    list = [156, 1651, -955, 1, 20, 69, 31]
+    print(list)
+    quicksort(list, 0, len(list)-1)
+    print(list)

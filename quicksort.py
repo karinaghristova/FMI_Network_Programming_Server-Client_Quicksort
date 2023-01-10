@@ -60,10 +60,11 @@ def quicksort_parallel(arr, lowIndex, highIndex):
 
     p1.join()
     p2.join()
-    
+
 
 if __name__ == '__main__':
     list = [156, 1651, -955, 1, 20, 69, 31]
     print(list)
     quicksort(list, 0, len(list)-1)
     print(list)
+
